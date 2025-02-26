@@ -10,7 +10,7 @@ RUN useradd -m -s /bin/bash appuser && echo "appuser ALL=(ALL) NOPASSWD: ALL" >>
 USER appuser
 
 COPY --chown=appuser:appuser requirements.txt ./
-COPY --chown=appuser:appuser app.py htmlTemplates.py LICENSE README.md ./
+COPY --chown=appuser:appuser app.py htmlTemplates.py LICENSE README.md pdf_ai.py ./
 
 RUN sudo pip install --no-cache-dir -r requirements.txt
 
