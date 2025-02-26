@@ -37,6 +37,11 @@ def upload():
 @app.route('/question', methods=['POST'])
 def question():
     data = request.get_json()
+    
+    if request.headers.get('cost_only') :
+        costs = {"min": 0, "max": 0, "estimated_cost": 5, "currency": "ProcessingUnits"}
+        return jsonify({"cost": costs}), 200
+    
     if not data or 'question' not in data:
         return jsonify({"error": "Missing 'question' in request body"}), 400
 
