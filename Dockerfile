@@ -11,8 +11,10 @@ USER appuser
 
 COPY --chown=appuser:appuser requirements.txt ./
 COPY --chown=appuser:appuser app.py htmlTemplates.py LICENSE README.md pdf_ai.py ./
+COPY ./static ./static
 
-RUN sudo pip install --no-cache-dir -r requirements.txt
+# disable no cache for testing purposes
+RUN sudo pip install -r requirements.txt
 
 EXPOSE 8501
 
