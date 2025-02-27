@@ -48,9 +48,9 @@
     </div>
 
     <script>
-        const API_URL = 'http://localhost:8501'; // Adjust this URL based on your API location
+        const API_URL = window.location.href; // Adjust this URL based on your API location
 
-        // Upload PDF files
+            // BUG: Upload PDF files to the server
         document.getElementById('uploadBtn').addEventListener('click', async () => {
             const files = document.getElementById('pdfFiles').files;
             const status = document.getElementById('uploadStatus');
@@ -67,7 +67,7 @@
             }
 
             try {
-                const response = await fetch(`${API_URL}/upload`, {
+                const response = await fetch(`${API_URL}upload`, {
                     method: 'POST',
                     body: formData
                 });
@@ -100,7 +100,7 @@
             output.classList.remove('hidden');
 
             try {
-                const response = await fetch(`${API_URL}/question`, {
+                const response = await fetch(`${API_URL}question`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

@@ -8,22 +8,44 @@ load_dotenv()
 app = Flask(
     __name__, static_url_path="/static", static_folder=os.path.abspath("static")
 )
+
 pdf_ai = PDFConversationalAI()
 
 
-@app.route("/manifest.json")
+@app.route("/manifest.json", methods=["GET", "POST"])
 def manifest():
+
     return jsonify(
         {
             "name": "PDF Conversational AI",
             "description": "A conversational AI service that answers questions based on the content of uploaded PDFs.",
-            "documentation": """
-            <h3>Endpoints</h3>
-            <ul>
-                <li>POST /upload: Upload PDFs to process the text content.</li>
-                <li>POST /question: Ask a question based on the uploaded PDFs.</li>
-            </ul>
-        """,
+            "documentation": "",
+            "endpoints": [
+                {
+                    "uri": "/",
+                    "input_methods": ["GET"],
+                    "input_query": "",
+                    "input_headers": {},
+                    "input_body": "",
+                    "output": "",
+                    "documentation": "",
+                    "example_calls": [],
+                    "is_public": True,
+                },
+                {
+                    "uri": "/upload",
+                    "description": "Upload PDFs for processing",
+                    "input_methods": ["POST"],
+                    "is_public": True,
+                },
+                {
+                    "uri": "/question",
+                    "description": "Ask a question based on the content of the uploaded PDFs",
+                    "input_methods": ["POST"],
+                    "is_public": True,
+                },
+            ],
+            "is_public": True,
         }
     )
 
